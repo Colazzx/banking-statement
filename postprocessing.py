@@ -161,6 +161,11 @@ def combine_adjacent_columns(df, target_columns):
 
     # Step 3: Remove unnecessary empty columns
     df = df.drop(columns=empty_columns)
+    
+    # Step 4: Rename 'KETERANGANCBG' to 'KETERANGAN' and add an empty 'CBG' column if applicable
+    if "KETERANGANCBG" in df.columns:
+        df = df.rename(columns={"KETERANGANCBG": "KETERANGAN"})
+        df["CBG"] = ""
 
     # Step 4: Return the modified DataFrame
     return df
